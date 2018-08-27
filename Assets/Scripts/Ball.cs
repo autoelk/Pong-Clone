@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class Ball : MonoBehaviour {
 	public int speed = 75;
+	public int angle = 30;
 	private GameObject paddle1;
 	private Paddle paddle1script;
 	private GameObject paddle2;
 	private Paddle paddle2script;
 	private GameObject restartButton;
-	private SpriteRenderer ballRender;
 	public Text score1;
 	public Text score2;
 	int winner = 1;
@@ -21,7 +21,6 @@ public class Ball : MonoBehaviour {
 		paddle1script = paddle1.GetComponent<Paddle> ();
 		paddle2 = GameObject.Find ("Paddle 2");
 		paddle2script = paddle2.GetComponent<Paddle> ();
-		ballRender = gameObject.GetComponent<SpriteRenderer> ();
 		restartButton = GameObject.Find ("Restart");
 		ResetGame ();
 		ShootBall ();
@@ -40,9 +39,9 @@ public class Ball : MonoBehaviour {
 		this.transform.position = Vector3.zero;
 		this.GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 		if (winner == 1) {
-			this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (speed, Random.Range (-45, 45)));
+			this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (speed, Random.Range (-angle, angle)));
 		} else {
-			this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-speed, Random.Range (-45, 45)));
+			this.GetComponent<Rigidbody2D> ().AddForce (new Vector2 (-speed, Random.Range (-angle, angle)));
 		}
 	}
 
